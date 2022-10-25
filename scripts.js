@@ -121,10 +121,20 @@ const displayController = (() => {
     // before game start
     beginGameButton.addEventListener('click', function() {
         let playerOneName = document.getElementById('player-one-name').value
-        gameBoard.playerOne.name = playerOneName;
+        if (!playerOneName) {
+            gameBoard.playerOne.name = 'Player One'
+        } else {
+            gameBoard.playerOne.name = playerOneName;
+        }
+        
         gameBoard.playerOne.marker = 'X';
         let playerTwoName = document.getElementById('player-two-name').value
-        gameBoard.playerTwo.name = playerTwoName;
+        if (!playerTwoName) {
+            gameBoard.playerTwo.name = 'Player Two'
+        } else {
+            gameBoard.playerTwo.name = playerTwoName;
+        }
+        
         gameBoard.playerTwo.marker = 'O';
         
         // on game start

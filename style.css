@@ -1,12 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&family=Open+Sans:wght@300;400;700&display=swap');
 
 /* globals */
 * {
     margin: 0;
     padding: 0;
     text-align: center;
-    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
     font-size: 14pt;
+    color: white;
+    transition: all 0.2s ease;
+}
+
+body {
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    height: 100vh;
 }
 
 /* hidden */
@@ -16,44 +24,78 @@
 
 /* title */
 h1 {
+    font-family: 'Fuzzy Bubbles', 'Open Sans', Helvetica, Arial, sans-serif;
     text-align: center;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    font-size: 50pt;
+    font-size: 60pt;
+    padding: 45px 0px 10px 0px;
 }
 
+#subtitle {
+    font-family: 'Fuzzy Bubbles', 'Open Sans', Helvetica, Arial, sans-serif;
+    color: rgba(255,255,255,0.5);
+}
 
 /* commentary */
 #comments {
-    min-height: 140px;
+    padding: 40px 0px;
     font-weight: 300;
+    height: 100px;
+}
+
+#commentary {
+    font-family: 'Fuzzy Bubbles', 'Open Sans', Helvetica, Arial, sans-serif;
+    font-size: 18pt;
 }
  
  
 
 /* begin game form */
+#begin-game-container {
+    height: 350px;
+    margin-top: 100px;
+}
+
+h2 {
+    font-family: 'Fuzzy Bubbles', 'Open Sans', Helvetica, Arial, sans-serif;
+    font-size: 30pt;
+    padding-bottom: 60px;
+}
+
 label {
+    font-family: 'Fuzzy Bubbles', 'Open Sans', Helvetica, Arial, sans-serif;
      font-weight: bold;
      margin-right: 10px;
      font-size: 16pt;
 }
+
+input:focus{outline:none !important}
  
 input {
-     border-radius: 5px;
-     border: 1px solid gray;
-     padding: 5px 0px;
+     border-radius: 30px;
+     border: 2px solid white;
+     background-color: rgba(255,255,255,0.2);
+     padding: 10px 10px;
+     text-align: left;
+     color: white;
 }
 
+::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+#begin {
+    margin-top:60px;
+}
 
 /* buttons */
 button {
     padding: 10px 20px;
-    border-radius: 20px;
-    background-color: rgb(77, 165, 36);
-    border: none;
+    border-radius: 30px;
+    background-color: rgba(255,255,255,0.2);
+    border: 2px white solid;
     color: white;
     font-size: 14pt;
-    font-weight: bold;
+    font-weight: normal;
     cursor: pointer;
     transition: all 0.1s ease;
     margin-top: 20px;
@@ -61,7 +103,7 @@ button {
 }
 
 button:hover {
-    background-color: yellowgreen;
+    background-color: rgba(255,255,255,0.5);
 }
 
 
@@ -73,6 +115,7 @@ button:hover {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     cursor: pointer;
+
 }
 
 .square {
@@ -82,40 +125,40 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 50pt;
-    font-weight: bold;
+    font-size: 110pt;
+    font-weight: normal;
+    font-family: 'Fuzzy Bubbles', 'Open Sans', Helvetica, Arial, sans-serif;
+
 }
 
 .X::after {
     content: 'X';
-    color: red;
 }
 
 .O::after {
     content: 'O';
-    color: blue;
 }
 
 #index-0, #index-3 {
-    border-right: 1px black solid;
-    border-bottom: 1px black solid;
+    border-right: 1px white solid;
+    border-bottom: 1px white solid;
 }
 
 #index-1, #index-4 {
-    border-bottom: 1px black solid;
+    border-bottom: 1px white solid;
 }
 
 #index-2, #index-5 {
-    border-left: 1px black solid;
-    border-bottom: 1px black solid;
+    border-left: 1px white solid;
+    border-bottom: 1px white solid;
 }
 
 #index-6 {
-    border-right: 1px black solid;
+    border-right: 1px white solid;
 }
 
 #index-8 {
-    border-left: 1px black solid;
+    border-left: 1px white solid;
 }
 
 .overlay {
@@ -126,4 +169,29 @@ button:hover {
 .nopointers {
     pointer-events: none;
     cursor: default;
+}
+
+
+/* FOOTER */
+footer {
+    font-weight: 100;
+    font-size: 10pt;
+    position: absolute;
+    text-align: center;
+    max-height: 15px;
+    margin: 5px 0px;
+    bottom: 0;
+    opacity: 0.5;
+    width: 100%;
+}
+
+footer a {
+    font-size: 10pt;
+    text-decoration: underline;
+    color: #FFCC70;
+
+}
+
+footer a:hover {
+    color: white;
 }

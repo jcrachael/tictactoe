@@ -9,8 +9,12 @@ Project sourced from [The Odin Project JavaScript course](https://www.theodinpro
 A tic tac toe game that can be played in the browser made using JavaScript and object-oriented programming.
 
 ## To-dos:
-1. Clean up UI, further CSS styling
-2. Create an AI so the user can choose to play against a computer
+* Create an AI so the user can choose to play against a computer
+    * In HTML/CSS, create an initial form with 2 buttons for the user to choose whether to play versus another human or the AI
+    * If the user clicks "Human v Human", continue with the game as it currently is (starting with the input of players' names)
+    * If the user clicks "Human v AI", only show the name input for Player One, and then play the game with playerTwo being the computer
+    * Initially the AI will be on "easy" mode, just choosing a valid square at random to place their marker each turn
+    * Once the "easy" mode is implemented, I plan to implement a "hard" mode where the AI is unbeatable
 
 ## Pseudocode
 
@@ -80,4 +84,4 @@ Game:
 
 ---
 
-Last modified: 25 October 2022
+Last modified: 26 October 2022
