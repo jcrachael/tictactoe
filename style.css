@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;700&display=swap');
+
+/* globals */
+* {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    font-size: 14pt;
+}
+
+/* hidden */
+.hidden {
+    display: none !important;
+}
+
+/* title */
+h1 {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 50pt;
+}
+
+
+/* commentary */
+#comments {
+    min-height: 140px;
+    font-weight: 300;
+}
+ 
+ 
+
+/* begin game form */
+label {
+     font-weight: bold;
+     margin-right: 10px;
+     font-size: 16pt;
+}
+ 
+input {
+     border-radius: 5px;
+     border: 1px solid gray;
+     padding: 5px 0px;
+}
+
+
+/* buttons */
+button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: rgb(77, 165, 36);
+    border: none;
+    color: white;
+    font-size: 14pt;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+button:hover {
+    background-color: yellowgreen;
+}
+
+
+/* game board */
+#gameboard {
+    margin: auto;
+    display: grid;
+    width: 600px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    cursor: pointer;
+}
+
+.square {
+    box-sizing: border-box;
+    height: 200px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50pt;
+    font-weight: bold;
+}
+
+.X::after {
+    content: 'X';
+    color: red;
+}
+
+.O::after {
+    content: 'O';
+    color: blue;
+}
+
+#index-0, #index-3 {
+    border-right: 1px black solid;
+    border-bottom: 1px black solid;
+}
+
+#index-1, #index-4 {
+    border-bottom: 1px black solid;
+}
+
+#index-2, #index-5 {
+    border-left: 1px black solid;
+    border-bottom: 1px black solid;
+}
+
+#index-6 {
+    border-right: 1px black solid;
+}
+
+#index-8 {
+    border-left: 1px black solid;
+}
+
+.overlay {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.nopointers {
+    pointer-events: none;
+    cursor: default;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Tic Tac Toe</title>
+</head>
+<body>
+    <div id="container">
+        <!-- Title -->
+        <h1>Tic Tac Toe</h1>
+
+        <!-- Begin game section -->
+        <div id="begin-game-container">
+            
+                <label for="player-one-name">Player one: </label>
+                <input type="text" name="player-one-name" id="player-one-name" placeholder="Name" value="Player 1">
+                <br><br>
+                <label for="player-two-name">Player two: </label>
+                <input type="text" name="player-two-name" id="player-two-name" placeholder="Name" value="Player 2">
+                <br>
+                <button id="begin">Begin game</button>
+    
+        </div>
+
+        <!-- Commentary -->
+        <div id="comments">
+            <p id="commentary"></p>
+            <button id="playAgain" class="hidden">Play again</button>
+        </div>
+        
+
+        <!-- Game board -->
+        <div id="gameboard" class="hidden">
+            <div class="square" id="index-0"></div>
+            <div class="square" id="index-1"></div>
+            <div class="square" id="index-2"></div>
+            <div class="square" id="index-3"></div>
+            <div class="square" id="index-4"></div>
+            <div class="square" id="index-5"></div>
+            <div class="square" id="index-6"></div>
+            <div class="square" id="index-7"></div>
+            <div class="square" id="index-8"></div>
+        </div>
+
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
