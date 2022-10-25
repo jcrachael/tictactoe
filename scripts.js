@@ -32,37 +32,41 @@ const gameBoard = (() => {
     // make a new div for each item in board
     let container = document.getElementById('gameboard');
     let squaresArray = Array.from(container.children);
+    let comment = document.getElementById('commentary');
+    let button = document.getElementById('playAgain');
 
     // method to check winner
     function checkWinner() {
-        console.log('Checking for a winner...');
-        console.log('The active player is: ' + activePlayer.name);
         winConditions.forEach((item, index) => {
             // check if any of the win conditions have been met
             if (board[item[0]] == 'X' && board[item[1]] == 'X' && board[item[2]] == 'X') {
-                    // set the winner variable
-                    winner = playerOne.name;
-                    console.log('We have a winner! > ' + playerOne.name);
-                    displayController.winDisplay();
-                } else if (board[item[0]] == 'O' && board[item[1]] == 'O' && board[item[2]] == 'O') {
-                    // set the winner variable
-                    winner = playerTwo.name;
-                    console.log('We have a winner! > ' + playerTwo.name);
-                    displayController.winDisplay();
-                } else {
-                // check for a tie if no winner
-                if (winner == '' && turns == 9) {
-                    // if 9 turns taken and no winner, declare tie
-                    winner = 'tie';
-                    console.log('It\'s a tie!');
-                } else {
-                    console.log("No winner yet...")
-                }
+                // set the winner variable
+                winner = playerOne.name;
+                container.classList.add('overlay');
+                container.classList.add('nopointers');
+                comment.innerHTML = `${winner} wins!`
+                button.classList.remove('hidden');
+                return winner;
+            } else if (board[item[0]] == 'O' && board[item[1]] == 'O' && board[item[2]] == 'O') {
+                // set the winner variable
+                winner = playerTwo.name;
+                container.classList.add('overlay');
+                container.classList.add('nopointers');
+                comment.innerHTML = `${winner} wins!`
+                button.classList.remove('hidden');
+                return winner;
+            } else if (winner == '' && turns == 9) {
+                // if 9 turns taken and no winner, declare tie
+                winner = 'tie';
+                container.classList.add('overlay');
+                container.classList.add('nopointers');
+                comment.innerHTML = "It's a tie!"
+                button.classList.remove('hidden');
+                return winner;
             }  
-        })
-
-        return winner
+        }); 
     };
+
 
     // method to play a turn
     function playTurn() {
@@ -79,21 +83,15 @@ const gameBoard = (() => {
                 // update game turns
                 turns += 1;
                 // check for winner
-                console.log('Board: ' + board);
-                console.log('Turns: ' + turns);
                 checkWinner();
                 // update the UI
-                // if winner has been declared, update the commentary
-                if (winner != '') {
-                    displayController.winDisplay();
-                // if no winner declared, update commentary and move to next turn
-                } else {
+                if (winner == '') {
                     // update the commentary
                     displayController.alertNextPlayer();
                     // switch to next player
                     displayController.nextPlayer();  
-                } 
-                    }
+                }
+            }
         }));
     };
     
@@ -118,7 +116,7 @@ const displayController = (() => {
     let comment = document.getElementById('commentary');
     let button = document.getElementById('playAgain');
     let board = document.getElementById('gameboard');
-    
+    let winner = gameBoard.winner;
 
     // before game start
     beginGameButton.addEventListener('click', function() {
@@ -139,10 +137,10 @@ const displayController = (() => {
     function winDisplay() {
         board.classList.add('overlay');
         board.classList.add('nopointers');
-        if (gameBoard.winner == 'tie') {
+        if (winner == 'tie') {
             comment.innerHTML = "It's a tie!"
         } else {
-            comment.innerHTML = `${gameBoard.activePlayer.name} wins!`
+            comment.innerHTML = `${winner} wins!`
         }
         button.classList.remove('hidden');
     }
@@ -168,7 +166,6 @@ const displayController = (() => {
         } else {
             gameBoard.activePlayer = gameBoard.playerOne;
         }
-        console.log('The current player is ' + gameBoard.activePlayer.name);
     };
 
     // replayGame method
@@ -207,11 +204,7 @@ const displayController = (() => {
         replayGame();
     }
 
-    
- 
-
     button.addEventListener('click', function() {
-       console.log('Play again button pressed');
        mainDisplay();
     })
 
