@@ -1,12 +1,16 @@
 # Tic Tac Toe
 
-Live demo coming soon.
+[View live demo](https://jcrachael.github.io/tictactoe/).
 
 Project sourced from [The Odin Project JavaScript course](https://www.theodinproject.com/lessons/node-path-javascript-tic-tac-toe).
 
 ## The project
 
 A tic tac toe game that can be played in the browser made using JavaScript and object-oriented programming.
+
+## To-dos:
+1. Clean up UI, further CSS styling
+2. Create an AI so the user can choose to play against a computer
 
 ## Pseudocode
 
