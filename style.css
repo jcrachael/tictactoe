@@ -23,11 +23,15 @@ body {
 }
 
 /* title */
+#title {
+    padding: 30px 0px 0px 0px;
+
+}
+
 h1 {
     font-family: 'Fuzzy Bubbles', 'Open Sans', Helvetica, Arial, sans-serif;
     text-align: center;
-    font-size: 60pt;
-    padding: 45px 0px 10px 0px;
+    font-size: 50pt;
 }
 
 #subtitle {
@@ -37,14 +41,16 @@ h1 {
 
 /* commentary */
 #comments {
-    padding: 40px 0px;
+
+    padding: 30px 0px;
     font-weight: 300;
-    height: 100px;
+    height: 80px;
 }
 
 #commentary {
     font-family: 'Fuzzy Bubbles', 'Open Sans', Helvetica, Arial, sans-serif;
-    font-size: 18pt;
+    font-size: 16pt;
+    
 }
  
  
@@ -107,13 +113,52 @@ button {
     cursor: pointer;
     transition: all 0.1s ease;
     margin-top: 20px;
-    margin-bottom: 40px;
+ 
 }
 
 button:hover {
     background-color: rgba(255,255,255,0.5);
 }
 
+
+/* restart game button */
+
+#restart-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 650px;
+    margin: auto;
+    align-items: center;
+    height:30px;
+}
+
+#restart-img {
+    opacity: 0.5;
+}
+
+#restart-img:hover {
+    opacity: 1;
+}
+
+#restart-comment {
+   font-size: 12pt;
+   padding-right:15px;
+   font-family: 'Fuzzy Bubbles', 'Open Sans', Helvetica, Arial, sans-serif;
+}
+
+.invisible {
+    opacity: 0;
+}
+
+#restart-comment {
+    color: rgba(255,255,255,0.7);
+}
+
+#restart img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
 
 /* game board */
 #gameboard {

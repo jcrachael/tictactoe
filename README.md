@@ -22,6 +22,7 @@ UI:
     * Button: "Begin game"
 * Game screen:
     * Commentary: "Player 1 moves first. Click any square to begin."
+    * Restart button
     * Game board
     * Commentary updates each turn; on game win, a button "Play again" appears
     * If user clicks "Play again", the game board is wiped and starts again

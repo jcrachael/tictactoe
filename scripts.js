@@ -6,6 +6,7 @@ const gameBoard = (() => {
         return { name, marker };
     };
 
+    // initialise player objects
     let playerOne = Player('Player 1', 'X');
     let playerTwo = Player('Player 2', 'O');
 
@@ -26,16 +27,12 @@ const gameBoard = (() => {
     let winner = '';
     let turns = 0;
     let gameType;
-
-   // set board to array
     let board = [];
-    
-
-    // make a new div for each item in board
     let container = document.getElementById('gameboard');
     let squaresArray = Array.from(container.children);
     let comment = document.getElementById('commentary');
     let button = document.getElementById('playAgain');
+    let restart = document.getElementById('restart-img');
 
     // method to check winner
     function checkWinner() {
@@ -46,6 +43,7 @@ const gameBoard = (() => {
                 winner = playerOne.name;
                 container.classList.add('overlay');
                 container.classList.add('nopointers');
+                restart.classList.add('hidden');
                 comment.innerHTML = `${winner} wins!`
                 button.classList.remove('hidden');
                 return winner;
@@ -54,6 +52,7 @@ const gameBoard = (() => {
                 winner = playerTwo.name;
                 container.classList.add('overlay');
                 container.classList.add('nopointers');
+                restart.classList.add('hidden');
                 comment.innerHTML = `${winner} wins!`
                 button.classList.remove('hidden');
                 return winner;
@@ -62,6 +61,7 @@ const gameBoard = (() => {
                 winner = 'tie';
                 container.classList.add('overlay');
                 container.classList.add('nopointers');
+                restart.classList.add('hidden');
                 comment.innerHTML = "It's a tie!"
                 button.classList.remove('hidden');
                 return winner;
@@ -70,7 +70,6 @@ const gameBoard = (() => {
     };
 
     function playComputerTurn() {
-       
        // initialise an empty array for the free spaces on the board
        let freeSpaceIndexes = [];
        // check which indexes of 'board' are empty and append them to the empty array
@@ -78,7 +77,7 @@ const gameBoard = (() => {
            if (board[i] == undefined) {
                freeSpaceIndexes.push(i);
            }
-       }
+       };
        // choose random number from freeSpaceIndexes array
        let randomIndex = freeSpaceIndexes[Math.floor(Math.random()*freeSpaceIndexes.length)];
        // check there is still free spaces on the board
@@ -100,13 +99,10 @@ const gameBoard = (() => {
                // switch to next player
                displayController.nextPlayer();  
            }
-       }  
-
-    }
-
+       };
+    };
 
     // method to play a turn (human-vs-human)
-    // TO-DO: implement a human-vs-AI version of this method
     function playTurn() {
         board = [ , , , , , , , , , ];
         // add a event listener to each square 
@@ -193,9 +189,11 @@ const displayController = (() => {
     let comment = document.getElementById('commentary');
     let button = document.getElementById('playAgain');
     let board = document.getElementById('gameboard');
+    let restartButton = document.getElementById('restart-img');
+    let restartText = document.getElementById('restart-comment');
     let winner = gameBoard.winner;
-    
 
+    // checks if human-vs-human or human-vs-AI
     function getGameType(e) {
         if (e.target.innerHTML == 'Human') {
             gameBoard.gameType = 'human';
@@ -205,45 +203,8 @@ const displayController = (() => {
         return gameBoard.gameType;
     }
 
-    // First screen "Choose Opponent"
-
-    // add event listener to 'Human' button
-    humanVsHumanButton.addEventListener('click', function(e) {
-        getGameType(e);
-        mainDisplay();
-    });
-
-    // ad event listener to 'AI' button
-    humanVsAIButton.addEventListener('click', function(e) {
-        getGameType(e);
-        mainDisplayAI();
-    });
-    
-
-    // Human vs Human get player names and start game on "Begin game" button click
-    beginGameButton.addEventListener('click', function() {
-        let playerOneName = document.getElementById('player-one-name').value
-        if (!playerOneName) {
-            gameBoard.playerOne.name = 'Player One'
-        } else {
-            gameBoard.playerOne.name = playerOneName;
-        }
-        gameBoard.playerOne.marker = 'X';
-        let playerTwoName = document.getElementById('player-two-name').value
-        if (!playerTwoName) {
-            gameBoard.playerTwo.name = 'Player Two'
-        } else {
-            gameBoard.playerTwo.name = playerTwoName;
-        }
-        gameBoard.playerTwo.marker = 'O';
-        // on game start
-        comment.innerHTML = `${gameBoard.playerOne.name} moves first - click any square to begin a game`;
-        displayBoard();
-        gameBoard.playTurn();
-    });
-
-    // Human vs AI get player name and start game on "Begin-ai" button click
-    beginAIGameButton.addEventListener('click', function() {
+    // begin a human-vs-AI game
+    function beginAIGame() {
         // get human player's name
         let playerOneName = document.getElementById('player-ai-name').value;
         if (!playerOneName) {
@@ -265,31 +226,56 @@ const displayController = (() => {
         // display the board and hide the name input form
         displayBoard();
         // start the game 
-        // TODO: implement a human-vs-ai version of the below method
         gameBoard.playTurn();
-    } )
+    };
 
+    // begin a human-vs-human game
+    function beginHumanGame() {
+        let playerOneName = document.getElementById('player-one-name').value
+        if (!playerOneName) {
+            gameBoard.playerOne.name = 'Player One'
+        } else {
+            gameBoard.playerOne.name = playerOneName;
+        }
+        gameBoard.playerOne.marker = 'X';
+        let playerTwoName = document.getElementById('player-two-name').value
+        if (!playerTwoName) {
+            gameBoard.playerTwo.name = 'Player Two'
+        } else {
+            gameBoard.playerTwo.name = playerTwoName;
+        }
+        gameBoard.playerTwo.marker = 'O';
+        // on game start
+        comment.innerHTML = `${gameBoard.playerOne.name} moves first - click any square to begin a game`;
+        displayBoard();
+        gameBoard.playTurn();
+    };
+
+    // display the win screen
     function winDisplay() {
         board.classList.add('overlay');
         board.classList.add('nopointers');
+        button.classList.add('hidden');
         if (winner == 'tie') {
             comment.innerHTML = "It's a tie!"
         } else {
             comment.innerHTML = `${winner} wins!`
         }
-        button.classList.remove('hidden');
-    }
+    };
 
+    // display the board and restart button to the screen
     function displayBoard() {
         // print the board
         board.classList.remove('hidden');
+        // display the restart button
+        restartButton.classList.remove('hidden');
         // if the game type is human, hide the previous enter name input screen
         if (gameBoard.gameType == 'human') {
             beginGameContainer.classList.add('hidden');
         } else if (gameBoard.gameType == 'AI') {
             beginAIGameContainer.classList.add('hidden');
         }
-    }
+    };
 
     // alert next player method
     function alertNextPlayer() {
@@ -309,7 +295,7 @@ const displayController = (() => {
         }
     };
 
-    // replayGame method
+    // replayGame method: resets the board and game trackers to init values
     function replayGame() {
         gameBoard.gameReset();
         // update each square to have no text content   
@@ -322,8 +308,9 @@ const displayController = (() => {
             button.classList.add('hidden');
             comment.innerHTML = '';
         })  
-    }
+    };
 
+    // display the screen to receive 2x player name inputs and then call replayGame() to set the board and game trackers to init values
     function mainDisplay() {
         gameBoard.activePlayer = gameBoard.playerOne;
         comment.innerHTML = '';
@@ -351,12 +338,11 @@ const displayController = (() => {
         } 
         // call the function that resets variables and prints the board
         replayGame();
-      
-    }
+    };
 
+    // display the screen to receive 1x player name input and then call replayGame() to set the board and game trackers to init values
     function mainDisplayAI() {
         gameBoard.activePlayer = gameBoard.playerOne;
-        console.log("The game type is: " + gameBoard.gameType);
         comment.innerHTML = '';
         // hide the choose opponent form
         if (!chooseOpponentForm.classList.contains('hidden')) {
@@ -378,14 +364,16 @@ const displayController = (() => {
         }
         // show the "Enter names" form
         if (beginAIGameContainer.classList.contains('hidden')) {
-                beginAIGameContainer.classList.remove('hidden');
+            beginAIGameContainer.classList.remove('hidden');
         } 
         // call the function that resets variables and prints the board
         replayGame();
-    }
+    };
 
+    // displays the first screen "Choose Opponent"
     function chooseOpponent() {
         comment.innerHTML = '';
+        restartButton.classList.add('hidden');
         // if the board isn't hidden, hide the board
         if (!board.classList.contains('hidden')) {
             board.classList.add('hidden');
@@ -405,13 +393,49 @@ const displayController = (() => {
         if (chooseOpponentForm.classList.contains('hidden')) {
             chooseOpponentForm.classList.remove('hidden');
         }
-        console.log(gameBoard.gameType);
-    }
+    };
+
+    // add event listener to 'Human' button
+    humanVsHumanButton.addEventListener('click', function(e) {
+        getGameType(e);
+        mainDisplay();
+    });
+
+    // add event listener to 'AI' button
+    humanVsAIButton.addEventListener('click', function(e) {
+        getGameType(e);
+        mainDisplayAI();
+    });
     
+    // Human vs Human get player names and start game on "Begin game" button click
+    beginGameButton.addEventListener('click', beginHumanGame);
+
+
+    // Human vs AI get player name and start game on "Begin-ai" button click
+    beginAIGameButton.addEventListener('click', beginAIGame);
+
+    // restart button event listeners
+     restartButton.addEventListener('mouseenter', function() {
+        restartText.classList.remove('invisible');
+    });
+
+    restartButton.addEventListener('mouseleave', function() {
+        restartText.classList.add('invisible');
+    });
+
+    restartButton.addEventListener('click', function() {
+        replayGame();
+        if (gameBoard.gameType == 'human') {
+            beginHumanGame();
+        } else if (gameBoard.gameType == 'AI') {
+            beginAIGame();
+        }
+    });
+
     // show the choose opponent screen on 'play again' button click
     button.addEventListener('click', function() {
        chooseOpponent();
-    })
+    });
 
     return {
         winDisplay, displayBoard, alertNextPlayer, nextPlayer,

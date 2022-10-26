@@ -10,9 +10,10 @@
 <body>
     <div id="container">
         <!-- Title -->
-        <h1>Tic Tac Toe</h1>
-        <p id="subtitle">A JavaScript game</p>
-
+        <div id="title">
+            <h1>Tic Tac Toe</h1>
+            <p id="subtitle">A JavaScript game</p>
+        </div>
         <!-- chose your opponent section -->
         <div id="choose-opponent" >
             <h2>Choose your opponent</h2>
@@ -43,11 +44,20 @@
         <!-- Commentary -->
         <div id="comments">
             <p id="commentary"></p>
+            
             <button id="playAgain" class="hidden">Play again</button>
         </div>
         
 
         <!-- Game board -->
+        <span id="restart-container">
+            <span id="restart-text">
+                <p id="restart-comment" class="invisible">Restart</p>
+            </span>
+            <span id="restart">
+                <img src="refresh.png" id="restart-img" alt="Restart game"  class="hidden">
+            </span>
+        </span>
         <div id="gameboard" class="hidden">
             <div class="square" id="index-0"></div>
             <div class="square" id="index-1"></div>
@@ -62,7 +72,8 @@
 
     </div>
     <footer>
-        Copyright © Rachael Cole 2022. This project is&nbsp;<a href="https://github.com/jcrachael/tictactoe/">open source</a>.   
+        Copyright © Rachael Cole 2022. This project is&nbsp;<a href="https://github.com/jcrachael/tictactoe/" target="_blank" alt="Tic Tac Toe by jcrachael on Github">open source</a>.   
+        Refresh icon created by <a href="https://www.flaticon.com/free-icons/refresh" title="refresh icons" target="_blank" alt="Freepik on Flaticon.com">Freepik</a> on <a href="https://www.flaticon.com/" target="_blank" alt="Flaticon.com">Flaticon</a>.
     </footer>
     <script src="scripts.js"></script>
 </body>
