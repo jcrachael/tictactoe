@@ -50,9 +50,17 @@ h1 {
  
 
 /* begin game form */
-#begin-game-container {
+#begin-game-container, #begin-ai-container, #choose-opponent {
     height: 350px;
     margin-top: 100px;
+}
+
+#begin-ai {
+    margin-top:60px;
+}
+
+#choose-opponent > button {
+  width: 150px;
 }
 
 h2 {

@@ -12,8 +12,16 @@
         <!-- Title -->
         <h1>Tic Tac Toe</h1>
         <p id="subtitle">A JavaScript game</p>
+
+        <!-- chose your opponent section -->
+        <div id="choose-opponent" >
+            <h2>Choose your opponent</h2>
+            <button id="human">Human</button><br>
+            <button id="ai">AI</button>
+        </div>
+
         <!-- Begin game section -->
-        <div id="begin-game-container">
+        <div id="begin-game-container" class="hidden">
                 <h2>Enter your names</h2>
                 <label for="player-one-name">Player one: </label>
                 <input type="text" name="player-one-name" id="player-one-name" placeholder="Name">
@@ -22,8 +30,15 @@
                 <input type="text" name="player-two-name" id="player-two-name" placeholder="Name">
                 <br>
                 <button id="begin">Begin game</button>
-    
         </div>
+
+        <div id="begin-ai-container" class="hidden">
+            <h2>Enter your name</h2>
+            <label for="player-ai-name">Player one: </label>
+            <input type="text" name="player-ai-name" id="player-ai-name" placeholder="Name">
+            <br>
+            <button id="begin-ai">Begin game</button>
+    </div>
 
         <!-- Commentary -->
         <div id="comments">

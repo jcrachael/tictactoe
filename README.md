@@ -10,9 +10,8 @@ A tic tac toe game that can be played in the browser made using JavaScript and o
 
 ## To-dos:
 * Create an AI so the user can choose to play against a computer
-    * In HTML/CSS, create an initial form with 2 buttons for the user to choose whether to play versus another human or the AI
-    * If the user clicks "Human v Human", continue with the game as it currently is (starting with the input of players' names)
-    * If the user clicks "Human v AI", only show the name input for Player One, and then play the game with playerTwo being the computer
+    * Implement `gameBoard.playComputerTurn()` which will handle the AI's turn
+    * Update `gameBoard.playTurn()` to call `playComputerTurn()` each time it is the Computer's (`playerTwo`'s) turn
     * Initially the AI will be on "easy" mode, just choosing a valid square at random to place their marker each turn
     * Once the "easy" mode is implemented, I plan to implement a "hard" mode where the AI is unbeatable
 
@@ -20,9 +19,10 @@ A tic tac toe game that can be played in the browser made using JavaScript and o
 
 UI:
 * Title
+* Choose opponent screen: Human or AI
 * Begin game screen:
     * Name: [text input placeholder = "Player 1"]
-    * Name: [text input placeholder = "Player 2"]
+    * Name: [text input placeholder = "Player 2"] (human-v-human game only)
     * Button: "Begin game"
 * Game screen:
     * Commentary: "Player 1 moves first. Click any square to begin."
@@ -37,6 +37,7 @@ Game:
     * initialises the two players `playerOne` and `playerTwo`
     * stores `winConditions` variable as an array of arrays, `activePlayer`, `winner`, `turns`
     * has property `board` - an (initially empty) array of length 9 containing the markers for each player
+    * has method `playComputerTurn` which will handle AI turn by selecting a random available index from `board` each turn (on easy mode)
     * has method `playTurn` which adds an event listener to each `<div class="square">` element that listens for clicks and, on click:
         * increases the `turns` counter
         * checks that square does not currently have a class of `X` or `O`
@@ -48,6 +49,7 @@ Game:
                 * if yes, end the game
             * if no, change the active player and update the commentary
             * update the UI
+        * checks if it is an AI turn next and if so, calls `playComputerTurn` at the appropriate time
     * has method `checkWinner` which:
         * checks if any of the `winCondition`s have been satisfied and if so, declares `winner` to the activePlayer 
         * otherwise checks if it is a tie (turns = 9 and no winner) in which case `winner` is set to `tie` 
