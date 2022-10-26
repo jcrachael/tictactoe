@@ -83,7 +83,6 @@ const gameBoard = (() => {
        // check there is still free spaces on the board
        if (randomIndex != undefined) {
            // if there are free spaces, add the computer's marker to board[randomIndex]
-           console.log("random index: " + randomIndex);
            let chosenSquare = document.getElementById(`index-${randomIndex}`);
            board[randomIndex] = playerTwo.marker;
            chosenSquare.classList.add(playerTwo.marker);
@@ -128,6 +127,7 @@ const gameBoard = (() => {
                         // switch to next player
                         displayController.nextPlayer();  
                     }
+      
                 // else if ai game
                 } else if (this.gameType == 'AI' && this.activePlayer == playerOne) {
                     // add the player's marker to the div
@@ -232,12 +232,14 @@ const displayController = (() => {
     // begin a human-vs-human game
     function beginHumanGame() {
         let playerOneName = document.getElementById('player-one-name').value
+        
         if (!playerOneName) {
             gameBoard.playerOne.name = 'Player One'
         } else {
             gameBoard.playerOne.name = playerOneName;
         }
         gameBoard.playerOne.marker = 'X';
+
         let playerTwoName = document.getElementById('player-two-name').value
         if (!playerTwoName) {
             gameBoard.playerTwo.name = 'Player Two'
@@ -249,6 +251,7 @@ const displayController = (() => {
         comment.innerHTML = `${gameBoard.playerOne.name} moves first - click any square to begin a game`;
         displayBoard();
         gameBoard.playTurn();
+
     };
 
     // display the win screen
@@ -312,7 +315,7 @@ const displayController = (() => {
 
     // display the screen to receive 2x player name inputs and then call replayGame() to set the board and game trackers to init values
     function mainDisplay() {
-        gameBoard.activePlayer = gameBoard.playerOne;
+    
         comment.innerHTML = '';
         // hide the choose opponent form
         if (!chooseOpponentForm.classList.contains('hidden')) {
@@ -342,7 +345,7 @@ const displayController = (() => {
 
     // display the screen to receive 1x player name input and then call replayGame() to set the board and game trackers to init values
     function mainDisplayAI() {
-        gameBoard.activePlayer = gameBoard.playerOne;
+
         comment.innerHTML = '';
         // hide the choose opponent form
         if (!chooseOpponentForm.classList.contains('hidden')) {
@@ -425,6 +428,7 @@ const displayController = (() => {
 
     restartButton.addEventListener('click', function() {
         replayGame();
+        gameBoard.activePlayer = gameBoard.playerOne;
         if (gameBoard.gameType == 'human') {
             beginHumanGame();
         } else if (gameBoard.gameType == 'AI') {
